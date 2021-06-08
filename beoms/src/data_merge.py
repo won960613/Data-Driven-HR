@@ -46,16 +46,13 @@ def init():
                                        how='outer')
     # print(merged_employee_program.columns)
 
-    # 프로그램 형식명만 보기 위해 직군과 연결
+    # 프로그램 형식명만 보기 위해 직군과 연결 - COL04: 프로그램 종류 / COL05: 프로그램 이름
     raw_employee_skill = merged_employee_program[['JIKWON_NO', 'NAME', 'COL04', 'COL05']]
 
     # Nan 있는 행 제거
     refined_employee_skill = raw_employee_skill.dropna(axis=0)
 
-    # 파일 확장자만 뽑아보기
-    refined_employee_skill = refined_employee_skill[refined_employee_skill['COL04'].str.contains('.')]
-    group_employee_skill = refined_employee_skill.groupby(['JIKWON_NO', 'COL04']).size()
-    return group_employee_skill
+    return refined_employee_skill
 
 
 def employee_skill():
